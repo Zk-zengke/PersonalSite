@@ -11,6 +11,9 @@ RUN pnpm install --frozen-lockfile
 FROM deps AS builder
 COPY apps/api apps/api
 COPY packages/shared packages/shared
+# Prisma 生成客户端只需要一个格式合法的构建期 URL，不会连接数据库。
+# 真正的生产连接地址由 docker-compose.prod.yml 在容器运行时注入。
+ENV DATABASE_URL=postgresql://build:build@localhost:5432/build
 RUN pnpm --filter @learning/api prisma:generate
 RUN pnpm --filter @learning/api build
 
