@@ -20,6 +20,7 @@ export function Hero() {
           alt=""
           fill
           priority
+          sizes="100vw"
           className="object-cover object-center md:object-right"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#061b55] via-[#061b55]/90 to-[#061b55]/10" />
