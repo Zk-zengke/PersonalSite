@@ -37,7 +37,7 @@ export function Hero() {
             将编程、Linux、数据库与电子技术的学习过程，整理成结构清晰、随时可查的个人知识库。
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild size="lg" className="bg-white text-blue-700 hover:bg-blue-50">
+            <Button asChild size="lg" className="theme-hero-primary bg-white text-blue-700 hover:bg-blue-50">
               <Link href="/categories">开始学习 <ArrowRight size={18} /></Link>
             </Button>
             <Button asChild size="lg" className="border border-white/20 bg-white/10 text-white hover:bg-white/20">

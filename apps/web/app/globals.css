@@ -77,3 +77,8 @@ html.dark .text-slate-500 { color: #94a3b8; }
 html.dark .border-slate-100,
 html.dark .border-slate-200 { border-color: #1e293b; }
 html.dark .divide-slate-100 > :not(:last-child) { border-color: #1e293b; }
+html.dark .theme-hero-primary {
+  background-color: #fff;
+  color: #1d4ed8;
+}
+html.dark .theme-hero-primary:hover { background-color: #eff6ff; }
