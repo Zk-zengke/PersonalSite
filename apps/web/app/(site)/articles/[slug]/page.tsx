@@ -13,11 +13,11 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   if (!article) notFound();
   return (
     <article className="mx-auto max-w-5xl px-5 py-14">
-      <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm md:p-10">
+      <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm dark:border-slate-800 dark:bg-slate-900 md:p-10">
       <div className="inline-flex rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700">{article.category?.name}</div>
       <h1 className="mt-5 text-balance text-4xl font-black leading-tight text-slate-900 md:text-5xl">{article.title}</h1>
       <p className="mt-5 text-lg leading-8 text-slate-500">{article.summary}</p>
-      <div className="mt-6 flex flex-wrap items-center gap-4 border-b border-slate-100 pb-8 text-sm text-slate-400">
+      <div className="mt-6 flex flex-wrap items-center gap-4 border-b border-slate-100 pb-8 text-sm text-slate-400 dark:border-slate-800">
         <span className="flex items-center gap-2"><CalendarDays size={15} />{formatDate(article.createdAt)}</span>
         {article.tags.map((tag) => <span key={tag}>#{tag}</span>)}
       </div>

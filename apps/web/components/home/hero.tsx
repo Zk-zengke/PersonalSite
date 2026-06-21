@@ -16,14 +16,15 @@ export function Hero() {
         className="relative min-h-[360px] overflow-hidden rounded-3xl bg-[#061b55] px-8 py-12 shadow-xl shadow-blue-950/15 md:px-16 md:py-16"
       >
         <Image
-          src="/learning-hero.png"
+          src="/sunrise-hero.png"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center md:object-right"
+          className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#061b55] via-[#061b55]/90 to-[#061b55]/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/62 to-slate-900/5 dark:from-slate-950/95 dark:via-slate-950/72 dark:to-blue-950/20" />
+        <div className="absolute inset-0 bg-blue-950/5 dark:bg-blue-950/25" />
         <div className="relative z-10 max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-white/10 px-4 py-2 text-sm text-blue-100 backdrop-blur">
             <Lightbulb size={16} /> 建立属于自己的知识体系

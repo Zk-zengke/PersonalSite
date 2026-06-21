@@ -91,7 +91,7 @@ export function ArticleForm({ initialCategoryId = "" }: { initialCategoryId?: st
           <label className="grid gap-2 text-sm font-medium text-slate-700">Slug<Input name="slug" required pattern="[a-z0-9-]+" placeholder="linux-file-permissions" /></label>
         </div>
         <label className="grid gap-2 text-sm font-medium text-slate-700">所属学习模块
-          <select value={categoryId} onChange={(event) => setCategoryId(event.target.value)} required className="h-11 rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-900 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100">
+          <select value={categoryId} onChange={(event) => setCategoryId(event.target.value)} required className="h-11 rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-900 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:ring-blue-900">
             <option value="">请选择学习模块</option>
             {categories.map((category) => <option key={category.id} value={category.id}>{category.name}</option>)}
           </select>
@@ -101,7 +101,7 @@ export function ArticleForm({ initialCategoryId = "" }: { initialCategoryId?: st
 
         <div className="grid gap-3">
           <span className="text-sm font-medium text-slate-700">文章封面</span>
-          <div className="flex flex-wrap items-center gap-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4">
+          <div className="flex flex-wrap items-center gap-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800/50">
             {coverImage ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={coverImage.startsWith("http") ? coverImage : `${API_ORIGIN}${coverImage}`} alt="" className="h-24 w-40 rounded-lg object-cover" />

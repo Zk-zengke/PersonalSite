@@ -21,7 +21,7 @@ export default async function HomePage() {
           <div className="mb-5 flex items-end justify-between">
             <div>
               <p className="text-sm font-semibold text-blue-600">学习导航</p>
-              <h2 className="mt-1 text-2xl font-black text-slate-900">探索学习模块</h2>
+              <h2 className="mt-1 text-2xl font-black text-slate-900 dark:text-white">探索学习模块</h2>
             </div>
             <Link href="/categories" className="flex items-center gap-1 text-sm font-medium text-blue-600">查看全部 <ArrowRight size={15}/></Link>
           </div>
@@ -33,7 +33,7 @@ export default async function HomePage() {
             <div className="mb-5 flex items-end justify-between">
               <div>
                 <p className="text-sm font-semibold text-blue-600">精选内容</p>
-                <h2 className="mt-1 text-2xl font-black text-slate-900">最新学习文章</h2>
+                <h2 className="mt-1 text-2xl font-black text-slate-900 dark:text-white">最新学习文章</h2>
               </div>
             </div>
             <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -43,7 +43,7 @@ export default async function HomePage() {
 
           <aside className="space-y-5">
             <Card className="p-6">
-              <div className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-xl bg-orange-50 text-orange-500"><Flame/></span><div><h3 className="font-bold">学习数据</h3><p className="text-xs text-slate-400">知识库持续成长中</p></div></div>
+              <div className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-xl bg-orange-50 text-orange-500 dark:bg-orange-950/40"><Flame/></span><div><h3 className="font-bold dark:text-white">学习数据</h3><p className="text-xs text-slate-400">知识库持续成长中</p></div></div>
               <div className="mt-6 grid grid-cols-2 gap-3 text-center">
                 <div className="rounded-xl bg-blue-50 p-4"><strong className="block text-2xl text-blue-700">{categories.length}</strong><span className="text-xs text-slate-500">学习模块</span></div>
                 <div className="rounded-xl bg-emerald-50 p-4"><strong className="block text-2xl text-emerald-700">{articles.length}</strong><span className="text-xs text-slate-500">公开文章</span></div>
@@ -58,7 +58,7 @@ export default async function HomePage() {
           </aside>
         </div>
 
-        <section className="mt-12 grid gap-4 rounded-2xl border border-slate-200 bg-white p-6 sm:grid-cols-3">
+        <section className="mt-12 grid gap-4 rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900 sm:grid-cols-3">
           <div className="flex items-center gap-4"><GraduationCap className="text-blue-600"/><div><strong>系统学习</strong><p className="text-xs text-slate-400">模块化整理知识路径</p></div></div>
           <div className="flex items-center gap-4"><Layers3 className="text-emerald-600"/><div><strong>图文并茂</strong><p className="text-xs text-slate-400">文章支持多图内容</p></div></div>
           <div className="flex items-center gap-4"><CalendarCheck2 className="text-orange-500"/><div><strong>持续复盘</strong><p className="text-xs text-slate-400">记录真实学习过程</p></div></div>
