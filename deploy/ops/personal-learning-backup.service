@@ -1,0 +1,8 @@
+[Unit]
+Description=Back up personal learning site
+After=docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/apps/personal-learning-site
+ExecStart=/bin/bash /opt/apps/personal-learning-site/deploy/ops/backup.sh

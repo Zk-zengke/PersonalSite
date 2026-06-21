@@ -34,6 +34,18 @@ services:
         condition: service_healthy
     volumes:
       - learning_site_uploads:/app/apps/api/uploads
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
     networks: [internal, web]
 
   web:
@@ -47,6 +59,18 @@ services:
       NODE_ENV: production
       NEXT_PUBLIC_API_URL: https://${DOMAIN}/api
     depends_on: [api]
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
+        ]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
     networks: [web]
 
   caddy:

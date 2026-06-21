@@ -237,3 +237,42 @@ pnpm db:generate
 pnpm db:migrate
 pnpm db:seed
 ```
+
+## 10. 自动部署、监控与备份
+
+生产运维文件位于 `deploy/`：
+
+- `.github/workflows/deploy.yml`：推送 `main` 后通过 SSH 自动部署。
+- `deploy/deploy.sh`：拉取指定提交、构建 Docker 镜像、重启、健康检查，失败自动回滚。
+- `deploy/ops/monitor.py`：检测首页/API 响应时间、容器状态和磁盘空间，通过 SMTP 发出异常与恢复邮件。
+- `deploy/ops/backup.sh`：备份 PostgreSQL 和上传图片，默认保留 14 天。
+- `deploy/ops/*.timer`：systemd 每 5 分钟监控、每天 03:30 备份。
+
+GitHub 仓库需要配置以下 Actions Secrets：
+
+```text
+DEPLOY_HOST
+DEPLOY_PORT
+DEPLOY_USER
+DEPLOY_SSH_KEY
+DEPLOY_KNOWN_HOSTS
+```
+
+服务器安装定时任务：
+
+```bash
+cd /opt/apps/personal-learning-site
+bash deploy/ops/install.sh
+nano deploy/ops/monitor.env
+systemctl enable --now personal-learning-monitor.timer
+systemctl start personal-learning-monitor.service
+systemctl list-timers 'personal-learning-*'
+```
+
+手动测试备份：
+
+```bash
+systemctl start personal-learning-backup.service
+journalctl -u personal-learning-backup.service -n 50 --no-pager
+ls -lah /var/backups/personal-learning-site
+```

@@ -1,0 +1,8 @@
+[Unit]
+Description=Monitor personal learning site
+After=docker.service network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/apps/personal-learning-site
+ExecStart=/usr/bin/python3 /opt/apps/personal-learning-site/deploy/ops/monitor.py

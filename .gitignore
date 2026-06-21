@@ -5,6 +5,7 @@ dist/
 coverage/
 .env
 .env.local
+deploy/ops/monitor.env
 apps/api/src/generated/prisma/
 *.log
 *.tsbuildinfo

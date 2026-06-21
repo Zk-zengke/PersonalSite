@@ -10,6 +10,7 @@ import { MomentsModule } from "./moments/moments.module.js";
 import { PhotosModule } from "./photos/photos.module.js";
 import { PrismaModule } from "./prisma/prisma.module.js";
 import { UploadsModule } from "./uploads/uploads.module.js";
+import { HealthModule } from "./health/health.module.js";
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { UploadsModule } from "./uploads/uploads.module.js";
     PhotosModule,
     MomentsModule,
     DashboardModule,
-    UploadsModule
+    UploadsModule,
+    HealthModule
   ],
   providers: [{ provide: APP_GUARD, useClass: JwtAuthGuard }]
 })
