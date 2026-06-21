@@ -40,12 +40,12 @@ export function LoginForm() {
 
   return (
     <Card className="w-full max-w-md p-7 md:p-9">
-      <p className="text-sm text-cyan-300">ADMIN CONSOLE</p>
-      <h1 className="mt-2 text-3xl font-bold">欢迎回来</h1>
-      <p className="mt-2 text-sm text-slate-400">登录后管理你的知识宇宙。</p>
+      <p className="text-sm font-semibold text-blue-600">ADMIN CONSOLE</p>
+      <h1 className="mt-2 text-3xl font-bold text-slate-900">欢迎回来</h1>
+      <p className="mt-2 text-sm text-slate-500">登录后管理学习模块、文章和图片。</p>
       <form onSubmit={submit} className="mt-8 grid gap-5">
-        <label className="grid gap-2 text-sm text-slate-300">账号<Input name="username" required autoComplete="username" placeholder="admin" /></label>
-        <label className="grid gap-2 text-sm text-slate-300">密码<Input name="password" type="password" required autoComplete="current-password" /></label>
+        <label className="grid gap-2 text-sm text-slate-700">账号<Input name="username" required autoComplete="username" placeholder="admin" /></label>
+        <label className="grid gap-2 text-sm text-slate-700">密码<Input name="password" type="password" required autoComplete="current-password" /></label>
         {error && <p className="rounded-lg bg-rose-500/10 px-3 py-2 text-sm text-rose-300">{error}</p>}
         <Button type="submit" disabled={loading}>{loading ? "登录中…" : "登录"}</Button>
       </form>

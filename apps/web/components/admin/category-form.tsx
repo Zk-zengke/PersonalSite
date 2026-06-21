@@ -44,16 +44,16 @@ export function CategoryForm() {
 
   return (
     <Card className="max-w-3xl p-6 md:p-8">
-      <form onSubmit={submit} className="grid gap-5">
+      <form onSubmit={submit} className="grid gap-5 text-slate-700">
         <div className="grid gap-5 md:grid-cols-2">
-          <label className="grid gap-2 text-sm">板块名称<Input name="name" required placeholder="Linux 学习" /></label>
-          <label className="grid gap-2 text-sm">Slug<Input name="slug" required pattern="[a-z0-9-]+" placeholder="linux-learning" /></label>
+          <label className="grid gap-2 text-sm font-medium">模块名称<Input name="name" required placeholder="Linux 学习" /></label>
+          <label className="grid gap-2 text-sm font-medium">Slug<Input name="slug" required pattern="[a-z0-9-]+" placeholder="linux-learning" /></label>
         </div>
-        <label className="grid gap-2 text-sm">板块简介<Textarea name="description" placeholder="这个板块主要记录…" /></label>
-        <label className="grid gap-2 text-sm">封面图片 URL（可选）<Input name="coverImage" type="url" /></label>
-        <label className="grid max-w-40 gap-2 text-sm">排序<Input name="sortOrder" type="number" min="0" defaultValue="0" /></label>
-        {message && <p className="text-sm text-cyan-300">{message}</p>}
-        <Button type="submit" className="w-fit" disabled={loading}>{loading ? "保存中…" : "创建板块"}</Button>
+        <label className="grid gap-2 text-sm font-medium">模块简介<Textarea name="description" placeholder="这个模块主要整理哪些知识…" /></label>
+        <label className="grid gap-2 text-sm font-medium">封面图片 URL（可选）<Input name="coverImage" type="url" /></label>
+        <label className="grid max-w-40 gap-2 text-sm font-medium">排序<Input name="sortOrder" type="number" min="0" defaultValue="0" /></label>
+        {message && <p className="rounded-lg bg-blue-50 px-4 py-3 text-sm text-blue-700">{message}</p>}
+        <Button type="submit" className="w-fit" disabled={loading}>{loading ? "保存中…" : "创建模块"}</Button>
       </form>
     </Card>
   );

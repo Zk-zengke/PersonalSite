@@ -9,6 +9,7 @@ import { DashboardModule } from "./dashboard/dashboard.module.js";
 import { MomentsModule } from "./moments/moments.module.js";
 import { PhotosModule } from "./photos/photos.module.js";
 import { PrismaModule } from "./prisma/prisma.module.js";
+import { UploadsModule } from "./uploads/uploads.module.js";
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { PrismaModule } from "./prisma/prisma.module.js";
     ArticlesModule,
     PhotosModule,
     MomentsModule,
-    DashboardModule
+    DashboardModule,
+    UploadsModule
   ],
   providers: [{ provide: APP_GUARD, useClass: JwtAuthGuard }]
 })

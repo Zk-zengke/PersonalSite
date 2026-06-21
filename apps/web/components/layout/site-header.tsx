@@ -1,46 +1,52 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, Sparkles, X } from "lucide-react";
+import { BookOpenCheck, Menu, Search, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const links = [
-  ["学习板块", "/categories"],
+  ["首页", "/"],
+  ["学习模块", "/categories"],
+  ["知识文章", "/categories"],
   ["生活照片", "/photos"],
-  ["随笔", "/moments"],
+  ["随笔记录", "/moments"],
   ["关于我", "/about"]
 ];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/70 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
-        <Link href="/" className="flex items-center gap-2 font-semibold">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-violet-500 to-cyan-400 text-slate-950">
-            <Sparkles size={18} />
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-xl">
+      <div className="mx-auto flex h-18 max-w-[1480px] items-center justify-between gap-6 px-5">
+        <Link href="/" className="flex shrink-0 items-center gap-3 font-semibold">
+          <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-blue-700 to-blue-500 text-white shadow-lg shadow-blue-500/20">
+            <BookOpenCheck size={21} />
           </span>
-          <span>Learning<span className="text-cyan-300">.Space</span></span>
+          <span className="leading-tight">
+            <strong className="block text-base text-slate-900">个人学习知识站</strong>
+            <small className="font-normal text-slate-400">记录 · 整理 · 持续成长</small>
+          </span>
         </Link>
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {links.map(([label, href]) => (
             <Button key={href} asChild variant="ghost" size="sm">
               <Link href={href}>{label}</Link>
             </Button>
           ))}
-          <Button asChild size="sm" className="ml-2">
-            <Link href="/admin/login">管理后台</Link>
-          </Button>
         </nav>
-        <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="菜单">
+        <div className="hidden items-center gap-3 md:flex">
+          <div className="flex h-10 w-56 items-center gap-2 rounded-xl bg-slate-100 px-3 text-sm text-slate-400"><Search size={16}/>搜索文章、模块…</div>
+          <Button asChild size="sm"><Link href="/admin/login">管理后台</Link></Button>
+        </div>
+        <button className="text-slate-700 lg:hidden" onClick={() => setOpen(!open)} aria-label="菜单">
           {open ? <X /> : <Menu />}
         </button>
       </div>
       {open && (
-        <nav className="grid gap-2 border-t border-white/5 p-4 md:hidden">
+        <nav className="grid gap-2 border-t border-slate-100 bg-white p-4 lg:hidden">
           {links.map(([label, href]) => (
-            <Link key={href} href={href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-slate-300 hover:bg-white/5">
+            <Link key={href} href={href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-slate-600 hover:bg-blue-50">
               {label}
             </Link>
           ))}

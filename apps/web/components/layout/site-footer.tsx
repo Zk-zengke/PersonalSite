@@ -1,7 +1,8 @@
 export function SiteFooter() {
   return (
-    <footer className="border-t border-white/5 py-10 text-center text-sm text-slate-500">
-      <p>持续学习，持续构建。© {new Date().getFullYear()} Learning.Space</p>
+    <footer className="mt-16 border-t border-slate-200 bg-white py-10 text-center text-sm text-slate-500">
+      <p>优质内容 · 系统学习 · 持续成长</p>
+      <p className="mt-2">© {new Date().getFullYear()} 个人学习知识站</p>
     </footer>
   );
 }

@@ -32,6 +32,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    volumes:
+      - learning_site_uploads:/app/apps/api/uploads
     networks: [internal, web]
 
   web:
@@ -69,5 +71,6 @@ networks:
 
 volumes:
   learning_site_data:
+  learning_site_uploads:
   caddy_data:
   caddy_config:

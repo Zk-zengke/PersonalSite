@@ -7,6 +7,7 @@ import type {
 
 export const API_URL =
   process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000/api";
+export const API_ORIGIN = API_URL.replace(/\/api\/?$/, "");
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API_URL}${path}`, {
@@ -47,6 +48,28 @@ export function adminRequest<T>(
       ...init?.headers
     }
   });
+}
+
+export async function uploadImage(file: File, token: string) {
+  const body = new FormData();
+  body.append("file", file);
+  const response = await fetch(`${API_URL}/uploads/images`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body
+  });
+  const payload = (await response.json()) as ApiResponse<{
+    path: string;
+    filename: string;
+    size: number;
+  }>;
+  if (!response.ok || !payload.success) {
+    throw new Error(payload.message || "图片上传失败");
+  }
+  return {
+    ...payload.data,
+    url: `${API_ORIGIN}${payload.data.path}`
+  };
 }
 
 export type { Article, Category, DashboardStats };

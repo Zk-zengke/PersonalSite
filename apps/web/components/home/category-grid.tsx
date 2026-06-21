@@ -2,33 +2,49 @@
 
 import type { Category } from "@learning/shared";
 import { motion } from "framer-motion";
-import { ArrowUpRight, BookOpen } from "lucide-react";
+import {
+  ArrowRight,
+  Bot,
+  Code2,
+  Cpu,
+  Database,
+  Languages,
+  Network
+} from "lucide-react";
 import Link from "next/link";
-import { Card } from "@/components/ui/card";
+
+const styles = [
+  { icon: Code2, color: "text-violet-600", bg: "bg-violet-50", border: "hover:border-violet-200" },
+  { icon: Network, color: "text-blue-600", bg: "bg-blue-50", border: "hover:border-blue-200" },
+  { icon: Bot, color: "text-emerald-600", bg: "bg-emerald-50", border: "hover:border-emerald-200" },
+  { icon: Cpu, color: "text-orange-600", bg: "bg-orange-50", border: "hover:border-orange-200" },
+  { icon: Database, color: "text-rose-600", bg: "bg-rose-50", border: "hover:border-rose-200" },
+  { icon: Languages, color: "text-cyan-600", bg: "bg-cyan-50", border: "hover:border-cyan-200" }
+];
 
 export function CategoryGrid({ categories }: { categories: Category[] }) {
   if (!categories.length) {
-    return <Card className="p-8 text-center text-slate-400">还没有学习板块，登录后台创建第一个吧。</Card>;
+    return <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500">还没有学习模块，请到后台创建。</div>;
   }
   return (
-    <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-      {categories.map((category, index) => (
-        <motion.div key={category.id} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.06 }}>
-          <Link href={`/categories/${category.slug}`}>
-            <Card className="group h-full p-6 transition hover:-translate-y-1 hover:border-cyan-400/30 hover:shadow-cyan-500/10">
-              <div className="mb-5 flex items-center justify-between">
-                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-violet-500/25 to-cyan-400/20 text-cyan-300">
-                  <BookOpen />
-                </span>
-                <ArrowUpRight className="text-slate-600 transition group-hover:text-cyan-300" />
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+      {categories.map((category, index) => {
+        const style = styles[index % styles.length];
+        const Icon = style.icon;
+        return (
+          <motion.div key={category.id} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.04 }}>
+            <Link href={`/categories/${category.slug}`} className={`group block h-full rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg ${style.border}`}>
+              <span className={`grid h-12 w-12 place-items-center rounded-2xl ${style.bg} ${style.color}`}><Icon size={25}/></span>
+              <h3 className="mt-4 font-bold text-slate-900">{category.name}</h3>
+              <p className="mt-2 line-clamp-2 min-h-10 text-xs leading-5 text-slate-500">{category.description ?? "持续整理中的学习内容"}</p>
+              <div className="mt-4 flex items-center justify-between text-xs">
+                <span className={style.color}>{category._count?.articles ?? 0} 篇文章</span>
+                <ArrowRight size={14} className="text-slate-300 transition group-hover:translate-x-1 group-hover:text-blue-500"/>
               </div>
-              <h3 className="text-xl font-semibold">{category.name}</h3>
-              <p className="mt-2 min-h-12 text-sm leading-6 text-slate-400">{category.description ?? "一块正在生长的知识领地。"}</p>
-              <p className="mt-5 text-xs text-slate-500">{category._count?.articles ?? 0} 篇文章</p>
-            </Card>
-          </Link>
-        </motion.div>
-      ))}
+            </Link>
+          </motion.div>
+        );
+      })}
     </div>
   );
 }
