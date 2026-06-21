@@ -6,11 +6,11 @@ export const dynamic = "force-dynamic";
 
 export default async function CategoryArticlesPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const [category, articles] = await Promise.all([
-    publicApi.category(slug).catch(() => null),
-    publicApi.articles(slug).catch(() => [])
-  ]);
+  const category = await publicApi.category(slug).catch(() => null);
   if (!category) notFound();
+  // Use the immutable UUID for article filtering. This avoids double-encoding
+  // edge cases when a category uses a Chinese slug in a dynamic route.
+  const articles = await publicApi.articles(category.id).catch(() => []);
   return (
     <section className="mx-auto min-h-[70vh] max-w-[1480px] px-5 py-14">
       <div className="rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-8">
