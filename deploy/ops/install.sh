@@ -20,8 +20,8 @@ fi
 systemctl daemon-reload
 systemctl enable --now personal-learning-backup.timer
 systemctl enable --now personal-learning-deploy.timer
+systemctl enable --now personal-learning-monitor.timer
 
-echo "Automatic deployment and backup timers enabled."
+echo "Automatic deployment, monitoring, and backup timers enabled."
 echo "After configuring monitor.env, run:"
-echo "  systemctl enable --now personal-learning-monitor.timer"
 echo "  systemctl start personal-learning-monitor.service"

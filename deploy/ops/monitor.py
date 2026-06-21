@@ -112,11 +112,15 @@ def main() -> None:
         or (not healthy and now - int(previous.get("notifiedAt", 0)) >= repeat_seconds)
     )
 
-    if should_notify:
+    mail_enabled = config.get("MAIL_ENABLED", "false").lower() == "true"
+    if should_notify and mail_enabled:
         status = "恢复正常" if healthy else "出现异常"
         subject = f"[个人学习站] {status} - {socket.gethostname()}"
         send_mail(config, subject, f"检测时间：{time.strftime('%F %T')}\n\n{details}\n")
         notified_at = now
+    elif should_notify:
+        print("邮件告警尚未启用；检测结果仅写入 systemd 日志。")
+        notified_at = int(previous.get("notifiedAt", 0))
     else:
         notified_at = int(previous.get("notifiedAt", 0))
 

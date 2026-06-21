@@ -40,6 +40,7 @@ for attempt in {1..24}; do
     "https://${DOMAIN}/api/health" >/dev/null &&
      curl --fail --silent --show-error --max-time 8 \
     "https://${DOMAIN}/" >/dev/null; then
+    /bin/bash "$APP_DIR/deploy/ops/install.sh"
     trap - ERR
     echo "Deployment successful: $target_commit"
     exit 0

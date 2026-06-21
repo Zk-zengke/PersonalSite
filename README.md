@@ -254,9 +254,14 @@ pnpm db:seed
 cd /opt/apps/personal-learning-site
 bash deploy/ops/install.sh
 nano deploy/ops/monitor.env
-systemctl enable --now personal-learning-monitor.timer
 systemctl start personal-learning-monitor.service
 systemctl list-timers 'personal-learning-*'
+```
+
+`monitor.env` 默认 `MAIL_ENABLED=false`。填好 SMTP 授权码后改为：
+
+```env
+MAIL_ENABLED=true
 ```
 
 此方案不需要把服务器 SSH 私钥保存到 GitHub。正常更新流程：
