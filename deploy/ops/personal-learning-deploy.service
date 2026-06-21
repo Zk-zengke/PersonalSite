@@ -1,0 +1,10 @@
+[Unit]
+Description=Deploy new PersonalSite commits from GitHub
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/apps/personal-learning-site
+ExecStart=/usr/bin/flock -n /run/personal-learning-deploy.lock /bin/bash /opt/apps/personal-learning-site/deploy/ops/auto-deploy.sh
+TimeoutStartSec=30min

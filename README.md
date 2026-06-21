@@ -242,21 +242,11 @@ pnpm db:seed
 
 生产运维文件位于 `deploy/`：
 
-- `.github/workflows/deploy.yml`：推送 `main` 后通过 SSH 自动部署。
-- `deploy/deploy.sh`：拉取指定提交、构建 Docker 镜像、重启、健康检查，失败自动回滚。
+- `deploy/ops/personal-learning-deploy.timer`：服务器每 2 分钟检查 GitHub `main`。
+- `deploy/deploy.sh`：发现新提交后构建 Docker 镜像、重启、健康检查，失败自动回滚。
 - `deploy/ops/monitor.py`：检测首页/API 响应时间、容器状态和磁盘空间，通过 SMTP 发出异常与恢复邮件。
 - `deploy/ops/backup.sh`：备份 PostgreSQL 和上传图片，默认保留 14 天。
 - `deploy/ops/*.timer`：systemd 每 5 分钟监控、每天 03:30 备份。
-
-GitHub 仓库需要配置以下 Actions Secrets：
-
-```text
-DEPLOY_HOST
-DEPLOY_PORT
-DEPLOY_USER
-DEPLOY_SSH_KEY
-DEPLOY_KNOWN_HOSTS
-```
 
 服务器安装定时任务：
 
@@ -267,6 +257,12 @@ nano deploy/ops/monitor.env
 systemctl enable --now personal-learning-monitor.timer
 systemctl start personal-learning-monitor.service
 systemctl list-timers 'personal-learning-*'
+```
+
+此方案不需要把服务器 SSH 私钥保存到 GitHub。正常更新流程：
+
+```text
+本地 git push → 服务器最多 2 分钟内发现更新 → 自动部署 → 健康检查 → 失败自动回滚
 ```
 
 手动测试备份：

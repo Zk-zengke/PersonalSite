@@ -8,6 +8,8 @@ install -m 644 deploy/ops/personal-learning-monitor.service /etc/systemd/system/
 install -m 644 deploy/ops/personal-learning-monitor.timer /etc/systemd/system/
 install -m 644 deploy/ops/personal-learning-backup.service /etc/systemd/system/
 install -m 644 deploy/ops/personal-learning-backup.timer /etc/systemd/system/
+install -m 644 deploy/ops/personal-learning-deploy.service /etc/systemd/system/
+install -m 644 deploy/ops/personal-learning-deploy.timer /etc/systemd/system/
 
 if [[ ! -f deploy/ops/monitor.env ]]; then
   cp deploy/ops/monitor.env.example deploy/ops/monitor.env
@@ -17,8 +19,9 @@ fi
 
 systemctl daemon-reload
 systemctl enable --now personal-learning-backup.timer
+systemctl enable --now personal-learning-deploy.timer
 
-echo "Backup timer enabled."
+echo "Automatic deployment and backup timers enabled."
 echo "After configuring monitor.env, run:"
 echo "  systemctl enable --now personal-learning-monitor.timer"
 echo "  systemctl start personal-learning-monitor.service"
