@@ -9,4 +9,6 @@ deploy/ops/monitor.env
 apps/api/src/generated/prisma/
 *.log
 *.tsbuildinfo
+__pycache__/
+*.pyc
 .DS_Store
